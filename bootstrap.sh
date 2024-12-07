@@ -14,5 +14,15 @@ fi
 echo "Authenticating with GitHub..."
 gh auth login --web
 
+# Configure Git
+echo "Configuring Git..."
+git config --global user.name "justivan"
+git config --global user.email "justivan.dev@gmail.com"
+git config --global core.editor "code --wait"
+git config --global core.autocrlf input
+
+# Install Python development tools
+sudo apt install -y python3-dev python3-venv python3-pip libpq-dev
+
 # Proceed with further setup
 echo "Bootstrap process complete."

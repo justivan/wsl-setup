@@ -8,4 +8,4 @@ This repository contains a simple bash script to bootstrap a fresh Ubuntu instal
 2. Run the following command to download and execute the setup script:
 
    ```bash
-   curl -sSL https://raw.githubusercontent.com/your-username/ubuntu-setup/main/bootstrap.sh | bash
+   curl -sSL https://raw.githubusercontent.com/justivan/wsl-setup/refs/heads/main/bootstrap.sh | bash

@@ -16,10 +16,6 @@ if ! command -v gh &>/dev/null; then
     sudo apt install -y gh
 fi
 
-# Authenticate with GitHub
-echo "Authenticating with GitHub..."
-gh auth login
-
 # Configure Git
 echo "Configuring Git..."
 git config --global user.name "justivan"
@@ -28,4 +24,4 @@ git config --global core.editor "code --wait"
 git config --global core.autocrlf input
 
 # Proceed with further setup
-echo "Bootstrap process complete."
+echo "Bootstrap process complete. Run 'gh auth login' to authenticate with GitHub."

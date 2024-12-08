@@ -7,8 +7,11 @@ sleep 5  # Wait for 5 seconds
 echo "Updating and upgrading the system..."
 sudo apt update && sudo apt upgrade -y
 
-# Install Python development tools
+# Install python development tools
 sudo apt install -y python3-dev python3-venv python3-pip libpq-dev
+
+# Install expect
+sudo apt install -y expect
 
 # Install GitHub CLI if not installed
 if ! command -v gh &>/dev/null; then
@@ -24,8 +27,12 @@ git config --global core.editor "code --wait"
 git config --global core.autocrlf input
 
 # Install and configure ohmyzsh
-sudo apt install -y zsh
-sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+echo "Installing and configuring Oh My Zsh..."
+expect << EOF
+spawn sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+expect "Do you want to change your default shell to zsh? [Y/n]" { send "\r" }
+expect eof
+EOF
 
 # Proceed with further setup
 echo "Bootstrap process complete. Run 'gh auth login' to authenticate with GitHub."

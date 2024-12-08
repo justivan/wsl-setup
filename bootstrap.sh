@@ -18,7 +18,7 @@ fi
 
 # Authenticate with GitHub
 echo "Authenticating with GitHub..."
-sudo -u $USER -i gh auth login --web
+gh auth login
 
 # Configure Git
 echo "Configuring Git..."

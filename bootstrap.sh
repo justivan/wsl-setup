@@ -23,5 +23,9 @@ git config --global user.email "justivan.dev@gmail.com"
 git config --global core.editor "code --wait"
 git config --global core.autocrlf input
 
+# Install and configure ohmyzsh
+sudo apt install -y zsh
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
 # Proceed with further setup
 echo "Bootstrap process complete. Run 'gh auth login' to authenticate with GitHub."

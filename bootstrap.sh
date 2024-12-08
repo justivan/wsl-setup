@@ -19,6 +19,10 @@ if ! command -v gh &>/dev/null; then
     sudo apt install -y gh
 fi
 
+# Authenticate with GitHub
+echo "Authenticating with GitHub..."
+gh auth login --web
+
 # Configure Git
 echo "Configuring Git..."
 git config --global user.name "justivan"
@@ -28,11 +32,7 @@ git config --global core.autocrlf input
 
 # Install and configure ohmyzsh
 echo "Installing and configuring Oh My Zsh..."
-expect << EOF
-spawn curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh
-expect "Do you want to change your default shell to zsh? [Y/n]" { send "Y\r" }
-expect eof
-EOF
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 # Proceed with further setup
-echo "Bootstrap process complete. Run 'gh auth login' to authenticate with GitHub."
+echo "Bootstrap process complete."

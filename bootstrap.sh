@@ -1,5 +1,8 @@
 #!/bin/bash
 
+echo "Waiting for network to initialize..."
+sleep 5  # Wait for 5 seconds
+
 # Update and upgrade the system
 echo "Updating and upgrading the system..."
 sudo apt update && sudo apt upgrade -y

@@ -10,9 +10,6 @@ sudo apt update && sudo apt upgrade -y
 # Install python development tools
 sudo apt install -y python3-dev python3-venv python3-pip libpq-dev
 
-# Install expect
-sudo apt install -y expect
-
 # Install GitHub CLI if not installed
 if ! command -v gh &>/dev/null; then
     echo "Installing GitHub CLI..."
@@ -32,6 +29,7 @@ git config --global core.autocrlf input
 
 # Install and configure ohmyzsh
 echo "Installing and configuring Oh My Zsh..."
+sudo apt install -y zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 # Proceed with further setup

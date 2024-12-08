@@ -29,8 +29,8 @@ git config --global core.autocrlf input
 # Install and configure ohmyzsh
 echo "Installing and configuring Oh My Zsh..."
 expect << EOF
-spawn sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-expect "Do you want to change your default shell to zsh? [Y/n]" { send "\r" }
+spawn sh -c "curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh | sh"
+expect "Do you want to change your default shell to zsh? [Y/n]" { send "Y\r" }
 expect eof
 EOF
 

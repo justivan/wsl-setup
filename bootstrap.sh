@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Install python development tools
-sudo apt install -y python3-dev python3-venv python3-pip libpq-dev
+sudo apt install -y python3-dev python3-venv python3-pip pipx libpq-dev
 
 # Install GitHub CLI if not installed
 if ! command -v gh &>/dev/null; then

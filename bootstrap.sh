@@ -26,7 +26,7 @@ sudo apt install -y zsh
 
 # Install Oh My Zsh using the official install script
 echo "Downloading and installing Oh My Zsh..."
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
 # Install Node.js using nvm (Node Version Manager)
 echo "Installing Node.js..."
@@ -44,6 +44,10 @@ fi
 nvm install --lts
 nvm use --lts
 nvm alias default node
+
+# Finish the script by switching to zsh (after everything is done)
+echo "Switching to zsh..."
+chsh -s $(which zsh)
 
 # Proceed with further setup
 echo "Bootstrap process complete."

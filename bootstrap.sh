@@ -61,4 +61,4 @@ echo "Switching to zsh..."
 chsh -s $(which zsh)
 
 # Proceed with further setup
-echo "Bootstrap process complete."
+echo "Bootstrap process complete. Restart terminal or run 'exec zsh'"

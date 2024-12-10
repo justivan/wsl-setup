@@ -23,10 +23,21 @@ git config --global core.autocrlf input
 # Install and configure ohmyzsh
 echo "Installing and configuring Oh My Zsh..."
 sudo apt install -y zsh
-
-# Install Oh My Zsh using the official install script
-echo "Downloading and installing Oh My Zsh..."
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+
+# Add 'nvm' to the list of plugins in the .zshrc file (if not already present)
+echo "Adding nvm plugin to .zshrc..."
+if ! grep -q "nvm" ~/.zshrc; then
+    # Add 'nvm' to the plugins section of .zshrc
+    sed -i '/^plugins=(/ s/)/ nvm)/' ~/.zshrc
+fi
+
+# Update the ZSH_THEME to "terminalparty" in .zshrc
+echo "Updating ZSH_THEME to 'terminalparty' in .zshrc..."
+sed -i 's/^ZSH_THEME="robbyrussell"/ZSH_THEME="terminalparty"/' ~/.zshrc
+
+# Manually set zsh as the default shell
+chsh -s $(which zsh)
 
 # Install Node.js using nvm (Node Version Manager)
 echo "Installing Node.js..."

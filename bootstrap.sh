@@ -3,6 +3,23 @@
 # Install python development tools
 sudo apt install -y python3-dev python3-venv python3-pip pipx libpq-dev
 
+# Install Node.js using nvm (Node Version Manager)
+echo "Installing Node.js..."
+
+# Install nvm if it's not installed
+if ! command -v nvm &>/dev/null; then
+    echo "nvm not found, installing nvm..."
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+    # Source nvm for the current session
+    export NVM_DIR="$HOME/.nvm"
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+fi
+
+nvm install --lts
+nvm use --lts
+nvm alias default node
+
 # Install GitHub CLI if not installed
 if ! command -v gh &>/dev/null; then
     echo "Installing GitHub CLI..."

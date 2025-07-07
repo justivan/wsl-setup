@@ -20,24 +20,19 @@ git config --global user.email "justivan.dev@gmail.com"
 git config --global core.editor "code --wait"
 git config --global core.autocrlf input
 
-# Install and configure ohmyzsh
-echo "Installing and configuring Oh My Zsh..."
-sudo apt install -y zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+# Configure Bash to show Git branch in prompt
+echo "Configuring Bash to show Git branch..."
+cat >> ~/.bashrc << 'EOF'
 
-# Add 'nvm' to the list of plugins in the .zshrc file (if not already present)
-echo "Adding nvm plugin to .zshrc..."
-if ! grep -q "nvm" ~/.zshrc; then
-    # Add 'nvm' to the plugins section of .zshrc
-    sed -i '/^plugins=(/ s/)/ nvm)/' ~/.zshrc
-fi
+# Show Git branch in Bash prompt
+parse_git_branch() {
+    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+}
+export PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\[\033[01;33m\]$(parse_git_branch)\[\033[00m\] \$ '
+EOF
 
-# Update the ZSH_THEME to "terminalparty" in .zshrc
-echo "Updating ZSH_THEME to 'terminalparty' in .zshrc..."
-sed -i 's/^ZSH_THEME="robbyrussell"/ZSH_THEME="terminalparty"/' ~/.zshrc
-
-# Manually set zsh as the default shell
-chsh -s $(which zsh)
+# Reload .bashrc to apply changes
+source ~/.bashrc
 
 # Install Node.js using nvm (Node Version Manager)
 echo "Installing Node.js..."
@@ -56,9 +51,5 @@ nvm install --lts
 nvm use --lts
 nvm alias default node
 
-# Finish the script by switching to zsh (after everything is done)
-echo "Switching to zsh..."
-chsh -s $(which zsh)
-
-# Proceed with further setup
-echo "Bootstrap process complete. Restart terminal or run 'exec zsh'"
+# Finish the script
+echo "Bootstrap process complete."
